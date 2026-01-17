@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DBMS Lab Portal</title>
+
+<style>
+:root {
+    --primary: #0a3d62;
+    --secondary: #f97316;
+    --bg: #f4f6f8;
+    --card: #fffde7;       /* Light yellow for cards */
+    --code-bg: #ffe0b2;    /* Light orange for code blocks */
+    --code-color: #1e1e1e; /* Keep text dark for readability */
+}
+
+/* Sidebar menu button */
+.sidebar .menu-link {
+    display: block;            /* full width */
+    padding: 12px 18px;
+    margin: 6px 0;
+    border-radius: 6px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sidebar .menu-link:hover {
+    background: var(--secondary);
+    transform: translateX(3px); /* subtle slide effect */
+}
+
+.sidebar .menu-link.active {
+    background: var(--secondary);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.menu-title {
+    cursor: pointer;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    font-weight: bold;
+}
+
+.menu-title:hover {
+    background: var(--secondary);
+}
+
+.submenu {
+    margin-top: 8px;
+    display: none;
+}
+
+.submenu a {
+    display: block;
+    padding: 8px 16px;
+    margin: 4px 0;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.sidebar a,
+.submenu a {
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.submenu a:hover,
+.sidebar a.active,
+.submenu a.active {
+    background: var(--secondary);
+}
+
+/* Content */
+.content {
+    margin-left: 280px;
+    padding: 30px;
+    width: 100%;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
+}
+
+.card h2 {
+    color: var(--primary);
+    border-left: 6px solid var(--secondary);
+    padding-left: 12px;
+}
+
+/* Code Block */
+pre {
+    background: var(--code-bg);
+    color: var(--code-color);
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Images */
+.card img {
+    display: block;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .content {
+        margin-left: 0;
+    }
+}
+/* Introduction button hover */
+.sidebar .intro-btn {
+    background: var(--primary); /* initial color: dark blue */
+    font-size: 1.05em;
+    text-align: center;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Change to orange on hover */
+.sidebar .intro-btn:hover {
+    background: var(--secondary); /* orange on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+}
+
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>DBMS LAB</h2>
+       <div>
+      
+    <a href="#intro" class="menu-link intro-btn active">Introduction</a>
+</div>
+
+
+        <div class="menu-title" onclick="toggleMenu()">Experiments ▼</div>
+        <div class="submenu" id="submenu">
+            <a href="#exp1" class="menu-link">Database Schema Design using ER Diagram</a>
+            <a href="#exp2" class="menu-link">Creation of database schema – DDL</a>
+            <a href="#exp3" class="menu-link">Database initialization – Data insert, Data import to a
+database</a>
+            <a href="#exp4" class="menu-link">Experiment 4</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Introduction -->
+        <div class="card" id="intro">
+            <h2>Introduction</h2>
+            <p>Welcome to the DBMS Lab portal. Navigate the experiments using the sidebar menu. Each experiment contains problem description, SQL code, and results.</p>
+        </div>
+
+        <!-- Experiment 1 -->
+        <div class="card" id="exp1">
+            <h2>Experiment 1</h2>
+            <p><strong>Title:</strong> Database Schema Design using ER Diagram</p>
+            <p><strong>Problem Description:</strong> A university wants to maintain a database for its students, courses, and instructors.</p>
+            <p><strong>Entities:</strong></p>
+            <ul>
+                <li>Student(RollNo, Name, DOB, Dept)</li>
+                <li>Course(CourseID, Title, Credits)</li>
+                <li>Instructor(InstructorID, Name, Dept)</li>
+                <li>Enrollment(RollNo, CourseID, Grade)</li>
+            </ul>
+            <p><strong>Relationships:</strong></p>
+            <ul>
+                <li>Student enrolls in many Courses (Many-to-Many)</li>
+                <li>Instructor --< Course (One-to-Many))</li>
+            </ul>
+            <p><strong>SQL Queries:</strong></p>
+            <h2>1. Create Database and use it</h2>
+            <pre>
+CREATE DATABASE university;
+USE university;
+</pre>
+<h2>2. Create Tables</h2>
+<pre>
+<p><strong>Instructor Table</strong></p>
+CREATE TABLE Instructor (
+    InstructorID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Department VARCHAR(50)
+);
+<p><strong>Course Table</strong></p>
+CREATE TABLE Course (
+    CourseID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Credits INT,
+    InstructorID INT,
+    FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
+);
+<p><strong>Student Table</strong></p>
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(100),
+    DOB DATE,
+    Department VARCHAR(50)
+);
+<p><strong>Enrollment Table</strong></p>
+CREATE TABLE Enrollment (
+    RollNo INT,
+    CourseID INT,
+    Grade CHAR(2),
+    PRIMARY KEY (RollNo, CourseID),
+    FOREIGN KEY (RollNo) REFERENCES Student(RollNo),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+            </pre>
+
+            <h2>ER Diagram</h2>
+<img src="Exp1.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:50%; 
+            height:50%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </div>
+
+
+       <!-- Experiment 2 -->
+        <div class="card" id="exp2">
+            <h2>Experiment 2</h2>
+            <p><strong>Title:</strong> Creation of database schema – DDL</p>
+            <p><strong>Problem Description:</strong> Create tables, set constraints, enforce relationships, create indices, delete and modify tables).
+Export ER diagram from the database and verify relationships (with the ER diagram designed in
+exp1)</p>
+            <p><strong>Entities:</strong></p>
+            <ul>
+                <li>Student(RollNo, Name, DOB, Dept)</li>
+                <li>Course(CourseID, Title, Credits)</li>
+                <li>Instructor(InstructorID, Name, Dept)</li>
+                <li>Enrollment(RollNo, CourseID, Grade)</li>
+                
+            </ul>
+            <p><strong>Relationships:</strong></p>
+            <ul>
+                <li>Student enrolls in many Courses (Many-to-Many)</li>
+                <li>Course taught by Instructor (Many-to-One)</li>
+            </ul>
+            <p><strong>SQL Queries:</strong></p>
+            <h2>1. Create the Database and use it</h2>
+            <pre>
+CREATE DATABASE university;
+USE university;
+</pre>
+
+<h2>2. Create Tables (DDL)</h2>
+
+<pre>
+<p><strong>Instructor Table</strong></p>
+CREATE TABLE Instructor (
+InstructorID INT PRIMARY KEY,
+Name VARCHAR(100)
+NOT NULL,
+Department VARCHAR(50)
+);
+<p><strong>Course Table</strong></p>
+CREATE TABLE Course (
+CourseID INT PRIMARY KEY,
+Title VARCHAR(100) NOT NULL,
+Credits INT CHECK (Credits > 0),
+InstructorID INT,
+FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID) 
+ON DELETE SET NULL ON UPDATE CASCADE
+);
+<p><strong>Student  Table</strong></p>
+CREATE TABLE Student (
+RollNo INT PRIMARY KEY,
+Name VARCHAR(100) NOT NULL,
+DOB DATE,
+Department VARCHAR(50)
+);
+<p><strong>Enrollment  Table</strong></p>
+<strong>(Junction table for many-to-many relationship)</strong>
+
+CREATE TABLE Enrollment (
+RollNo INT,
+CourseID INT,
+Grade CHAR(2),
+PRIMARY
+KEY (RollNo, CourseID),
+FOREIGN KEY (RollNo)REFERENCES Student(RollNo) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (CourseID) REFERENCES Course(CourseID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+ </pre>
+ <h2>3. Create Indices (for fast retrieval)</h2>
+ <pre>
+ <p><strong>1. Index for fast lookup of students by department</strong></p>
+ CREATE INDEX idx_student_dept ON Student(Department);
+ <p><strong>2. Index for fast lookup of courses by instructor</strong></p>
+  CREATE INDEX idx_course_instructor ON Course(InstructorID);
+  </pre>
+<h2>4. Modify or Delete Tables</h2>
+<pre>
+mysql> ALTER TABLE Student ADD Email VARCHAR(100);
+mysql> drop table Student;
+</pre>
+<h2>5. Reading table information for completion of table and column names</h2>
+<pre>
+desc Student;
+desc Instructor;
+desc Course;
+desc Enrollment;
+</pre>
+            <h2>ER Diagram</h2>
+<img src="Exp2.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:50%; 
+            height:50%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+</div>
+        <!-- Experiment 3 -->
+        <div class="card" id="exp3">
+            <h1>Experiment 3</h1>
+            <p><strong>Title:</strong> Database initialization – Data insert, Data import to a
+database
+(bulk import using UI and SQL Commands)</p>
+           
+            <p><strong>SQL Queries:</strong></p>
+            
+           <h2>1. Insert Data (SQL Commands)</h2>
+<pre>
+<p><strong>Insert in to Instructor Table</strong></p>
+mysql> INSERT INTO Instructor (InstructorID, Name, Department)VALUES
+(101, 'Dr. Priya Nair', 'Computer Science'),
+(102, 'Dr. Rajesh Kumar', 'Mathematics'),
+(103, 'Dr. Meera Joseph', 'Data Science');
+<p><strong>Insert in to Course Table</strong></p>
+mysql> INSERT INTO Course (CourseID, Title, Credits, InstructorID) VALUES
+(201, 'Database Management Systems', 4, 101),
+(202, 'Operating Systems', 3, 101),
+(203, 'Linear Algebra', 4, 102),
+(204, 'Machine Learning', 3, 103);
+<p><strong>Insert in to Student  Table</strong></p>
+mysql> INSERT INTO Student (RollNo, Name, DOB, Department)VALUES
+(1001, 'Anjali S', '2003-04-21', 'Computer Science'),
+(1002, 'Rahul V', '2002-11-12', 'Mathematics'),
+(1003, 'Divya P', '2003-06-08', 'Data Science'),
+(1004, 'Arun K', '2002-09-10', 'Computer Science');
+<p><strong>Insert in to Enrollment  Table</strong></p>
+mysql> INSERT INTO Enrollment (RollNo, CourseID, Grade) VALUES
+(1001, 201, 'A'),
+(1001, 202, 'B'),
+(1002, 203, 'A'),
+(1003, 204, 'A'),
+(1004, 201, 'B');
+</pre>
+<h2>2. Verification Queries</h2>
+<pre>
+mysql> SELECT * FROM Instructor;
+<p><strong>Result</strong></p>
+<img src="Exp3_1.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:75%; 
+            height:50%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </pre>
+            <pre>
+mysql> SELECT * FROM Course;
+<p><strong>Result</strong></p>
+<img src="Exp3_2.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:75%; 
+            height:50%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </pre>
+            <pre>
+mysql> SELECT * FROM Student;
+<p><strong>Result</strong></p>
+<img src="Exp3_3.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:75%; 
+            height:50%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </pre>
+            <pre>
+mysql> SELECT * FROM Enrollment;
+<p><strong>Result</strong></p>
+<img src="Exp3_4.png" 
+     alt="ER Diagram" 
+     style="display:block; 
+            margin:20px auto; 
+            width:30%; 
+            height:30%; 
+            object-fit: contain; 
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+</pre>
+ </div>
+               <!-- Experiment 4 -->
+        <div class="card" id="exp4">
+            <h2>Experiment 4</h2>
+            <p><strong>Title:</strong> SQL Queries – SELECT, JOIN, GROUP BY</p>
+            <pre>
+SELECT * FROM Student;
+
+SELECT S.Name, C.Title
+FROM Student S
+JOIN Enrollment E ON S.RollNo = E.RollNo
+JOIN Course C ON E.CourseID = C.CourseID;
+
+SELECT Dept, COUNT(*) AS NumStudents
+FROM Student
+GROUP BY Dept;
+            </pre>
+        </div>
+
+        <div class="footer">
+            © DBMS Lab | By Manoj Mathew
+        </div>
+
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+function toggleMenu() {
+    const submenu = document.getElementById('submenu');
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
+
+// Highlight sidebar links while scrolling
+const sections = document.querySelectorAll('.content .card');
+const menuLinks = document.querySelectorAll('.menu-link');
+
+window.addEventListener('scroll', () => {
+    let current = "";
+    sections.forEach(sec => {
+        const sectionTop = sec.offsetTop - 120;
+        if(scrollY >= sectionTop) {
+            current = sec.getAttribute('id');
+        }
+    });
+    menuLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === "#" + current){
+            link.classList.add('active');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
