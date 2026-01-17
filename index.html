@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DBMS User Setup Guide</title>
+
+<style>
+:root {
+    --primary: #7c2d12;
+    --secondary: #fb923c;
+    --bg: #fff7ed;
+    --card: #ffffff;
+    --code: #431407;
+}
+
+
+
+
+
+/* Global */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Menu */
+.sidebar {
+    width: 260px;
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: var(--secondary);
+}
+
+/* Content Area */
+.content {
+    margin-left: 280px;
+    padding: 30px;
+    width: 100%;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    color: var(--primary);
+    border-left: 6px solid var(--secondary);
+    padding-left: 12px;
+}
+
+.card h3 {
+    margin-top: 25px;
+    color: #555;
+}
+
+/* Image */
+.dbms-image {
+    display: block;
+    margin: 0 auto 20px;
+    width: 220px;
+    border-radius: 12px;
+}
+
+/* Code */
+pre {
+    background: var(--code);
+    color: #eaeaea;
+    padding: 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* Button */
+.download-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 18px;
+    background: var(--secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .content {
+        margin-left: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- MENU -->
+    <div class="sidebar">
+        <h2>DBMS MENU</h2>
+        <a href="#intro">Introduction</a>
+        <a href="#mysql">MySQL Setup</a>
+        <a href="#workbench">MySQL Workbench</a>
+        <a href="#login">User Login</a>
+        <a href="#oracle">Oracle Setup</a>
+        <a href="manual.html">DBMS Lab Manual</a>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- Introduction -->
+        <div class="card" id="intro">
+            <img src="database.jpg" class="dbms-image" alt="DBMS">
+            <h2>Introduction</h2>
+            <p>
+                This DBMS lab manual explains how to install database software
+                and create users in <strong>MySQL</strong> and
+                <strong>Oracle Database</strong>.
+            </p>
+        </div>
+
+        <!-- MySQL -->
+        <div class="card" id="mysql">
+            <h2>MySQL Installation & User Creation</h2>
+            <pre>
+sudo apt update
+sudo apt install mysql-server
+
+sudo mysql
+
+CREATE USER 'csea'@'localhost' IDENTIFIED BY 'mbccet';
+CREATE USER 'cseb'@'localhost' IDENTIFIED BY 'mbccet';
+CREATE USER 'ai'@'localhost' IDENTIFIED BY 'mbccet';
+
+GRANT ALL PRIVILEGES ON *.* TO 'csea'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'cseb'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'ai'@'localhost';
+
+FLUSH PRIVILEGES;
+            </pre>
+        </div>
+
+        <!-- Workbench -->
+        <div class="card" id="workbench">
+            <h2>MySQL Workbench</h2>
+            <a href="mysql-workbench-community_8.0.45-1ubuntu24.04_amd64.deb"
+               class="download-btn" download>
+                Download MySQL Workbench
+            </a>
+
+            <h3>Installation</h3>
+            <pre>
+sudo apt install ./Downloads/mysql-workbench-community_8.0.45-1ubuntu24.04_amd64.deb
+            </pre>
+        </div>
+
+        <!-- Login -->
+        <div class="card" id="login">
+            <h2>Login with New User</h2>
+            <pre>
+mysql -u csea -p
+            </pre>
+        </div>
+
+        <!-- Oracle -->
+        <div class="card" id="oracle">
+            <h2>Oracle Database User Creation</h2>
+            <pre>
+sqlplus / as sysdba
+
+CREATE USER CSEA IDENTIFIED BY tiger;
+CREATE USER CSEB IDENTIFIED BY tiger;
+CREATE USER AI IDENTIFIED BY tiger;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO CSEA;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO CSEB;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO AI;
+            </pre>
+        </div>
+
+        <div class="footer">
+            © DBMS Lab Manual | Manoj Mathew
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database User Setup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Database User Setup Script</h1>
+
+    <h2>MySQL Installation & User Creation</h2>
+
+    <pre>
+sudo apt update
+sudo apt install mysql-server
+
+sudo mysql
+
+CREATE USER 'csea'@'localhost' IDENTIFIED BY 'mbccet';
+CREATE USER 'cseb'@'localhost' IDENTIFIED BY 'mbccet';
+CREATE USER 'ai'@'localhost' IDENTIFIED BY 'mbccet';
+
+GRANT ALL PRIVILEGES ON *.* TO 'csea'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'cseb'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'ai'@'localhost';
+
+FLUSH PRIVILEGES;
+    </pre>
+    <a href="mysql-workbench1-community_8.0.45-1ubuntu24.04_amd64.deb" download>
+        Download MySQL Workbench
+    </a>
+   <h3> For install MySql Work Bench</h3>
+ <pre>
+sudo apt install ./Downloads/mysql-workbench1-community_8.0.45-1ubuntu24.04_amd64.deb
+    </pre>
+    <h3>Login with New User</h3>
+    <pre>
+mysql -u csea -p
+    </pre>
+
+    <h2>Oracle Database User Creation</h2>
+
+    <pre>
+sqlplus / as sysdba
+
+CREATE USER CSEA IDENTIFIED BY tiger;
+CREATE USER CSEB IDENTIFIED BY tiger;
+CREATE USER AI IDENTIFIED BY tiger;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO CSEA;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO CSEB;
+
+GRANT create session, create table, create view,
+      unlimited tablespace, create procedure TO AI;
+    </pre>
+
+</div>
+
+</body>
+</html>
+
