@@ -210,7 +210,7 @@ pre {
             <a href="#exp2" class="menu-link">Creation of database schema – DDL</a>
             <a href="#exp3" class="menu-link">Database initialization – Data insert, Data import to a
 database</a>
-            <a href="#exp4" class="menu-link">Experiment 4</a>
+            <a href="#exp4" class="menu-link">Practice SQL commands for DML</a>
         </div>
     </div>
 
@@ -225,7 +225,7 @@ database</a>
 
         <!-- Experiment 1 -->
         <div class="card" id="exp1">
-            <h1>Experiment 1</h1>
+            <h2>Experiment 1</h2>
             <p><strong>Title:</strong> Database Schema Design using ER Diagram</p>
             <p><strong>Problem Description:</strong> A university wants to maintain a database for its students, courses, and instructors.</p>
             <p><strong>Entities:</strong></p>
@@ -295,7 +295,7 @@ CREATE TABLE Enrollment (
 
        <!-- Experiment 2 -->
         <div class="card" id="exp2">
-            <h1>Experiment 2</h1>
+            <h2>Experiment 2</h2>
             <p><strong>Title:</strong> Creation of database schema – DDL</p>
             <p><strong>Problem Description:</strong> Create tables, set constraints, enforce relationships, create indices, delete and modify tables).
 Export ER diagram from the database and verify relationships (with the ER diagram designed in
@@ -430,8 +430,7 @@ mysql> INSERT INTO Enrollment (RollNo, CourseID, Grade) VALUES
 mysql> SELECT * FROM Instructor;
 <p><strong>Result</strong></p>
 <img src="Exp3_1.png" 
-     alt="ER Diagram" 
-     style="display:block; 
+          style="display:block; 
             margin:20px auto; 
             width:75%; 
             height:50%; 
@@ -443,8 +442,7 @@ mysql> SELECT * FROM Instructor;
 mysql> SELECT * FROM Course;
 <p><strong>Result</strong></p>
 <img src="Exp3_2.png" 
-     alt="ER Diagram" 
-     style="display:block; 
+          style="display:block; 
             margin:20px auto; 
             width:75%; 
             height:50%; 
@@ -456,8 +454,7 @@ mysql> SELECT * FROM Course;
 mysql> SELECT * FROM Student;
 <p><strong>Result</strong></p>
 <img src="Exp3_3.png" 
-     alt="ER Diagram" 
-     style="display:block; 
+          style="display:block; 
             margin:20px auto; 
             width:75%; 
             height:50%; 
@@ -469,8 +466,7 @@ mysql> SELECT * FROM Student;
 mysql> SELECT * FROM Enrollment;
 <p><strong>Result</strong></p>
 <img src="Exp3_4.png" 
-     alt="ER Diagram" 
-     style="display:block; 
+         style="display:block; 
             margin:20px auto; 
             width:30%; 
             height:30%; 
@@ -478,26 +474,57 @@ mysql> SELECT * FROM Enrollment;
             border-radius:12px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
 </pre>
- </div>
+<h2>3. Bulk Data Import (CSV/Excel → Database)</h2>
+<pre>
+<p><strong>Method 1: MySQL Workbench UI</strong></p>
+  1. Open MySQL Workbench → Select your Database (UniversityDB).
+  2. Right-click the table → Table Data Import Wizard.
+  3. Choose your .csv file.
+  4. Map columns to table fields.
+  5. Click Next → MySQL imports all rows.
+</pre>
+<h2>4. Bulk Import Verification</h2>
+<p><strong>Query</strong></p>
+
+mysql> SELECT COUNT(*) FROM Student;
+<p><strong>Result</strong></p>
+<img src="Exp3_5.png" 
+          style="display:block; 
+            margin:20px auto; 
+            width:15%; 
+            height:15%; 
+            object-fit: contain;
+            object-position: left;
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+ mysql> SELECT * FROM Student LIMIT 10;
+ <img src="Exp3_6.png" 
+          style="display:block; 
+            margin:20px auto; 
+            width:50%; 
+            height:50%; 
+            object-fit: contain;
+            object-position: left;
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+ mysql> SELECT * FROM Student ;
+ <img src="Exp3_7.png" 
+          style="display:block; 
+            margin:20px auto; 
+            width:50%; 
+            height:50%; 
+            object-fit: contain;
+            object-position: left;
+            border-radius:12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                <!-- Experiment 4 -->
-        <div class="card" id="exp4">
-            <h2>Experiment 4</h2>
-            <p><strong>Title:</strong> SQL Queries – SELECT, JOIN, GROUP BY</p>
-            <pre>
-SELECT * FROM Student;
-
-SELECT S.Name, C.Title
-FROM Student S
-JOIN Enrollment E ON S.RollNo = E.RollNo
-JOIN Course C ON E.CourseID = C.CourseID;
-
-SELECT Dept, COUNT(*) AS NumStudents
-FROM Student
-GROUP BY Dept;
-            </pre>
-        </div>
-
-        <div class="footer">
+           <div class="card" id="exp4">
+            <h1>Experiment 4</h1>
+            <p><strong>Title:</strong> Practice SQL commands for DML (insertion, updating, altering, deletion of data, and viewing/querying
+records based on condition in databases).
+</p>
+           
+                    <div class="footer">
             © DBMS Lab | By Manoj Mathew
         </div>
 
@@ -534,4 +561,3 @@ window.addEventListener('scroll', () => {
 
 </body>
 </html>
-
